@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html> 
-<head> 
-    <title>Stack of Items</title>
-    <style>
-    .flex-container {
-        display: flex;  flex-direction:row;
-        background-color:cadetblue;
-    }
+<html>
 
-    .flex-container > div {  /*div children of the flex container*/
-        background-color: #f1f1f1; 
-        margin: 10px;  padding: 20px;  font-size: 30px;
-    }
+<head>
+	<title>Stack of Items</title>
+	<style>
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			background-color: cadetblue;
+		}
 
-    /* Responsive layout */
-    @media (max-width: 600px) { 
-        .flex-container{
-            flex-direction:column;
-            background-color: green;
-        }
-    }
-    </style>
+		.flex-container>div {
+			/*div children of the flex container*/
+			background-color: #f1f1f1;
+			margin: 10px;
+			padding: 20px;
+			font-size: 30px;
+		}
+
+		/* Responsive layout */
+		@media (max-width: 600px) {
+			.flex-container {
+				flex-direction: column;
+				background-color: cadetblue;
+			}
+		}
+	</style>
 </head>
+
 <body>
 	<h2>Madhumitha Reddy builds a stack</h2>
-	<input id="InputElement" type="text"><br><br>
+	<input id="InputElements" type="text"><br><br>
 	<div class="flex-container" id="target">
 		<div class="stack">row item 1</div>
 		<div class="stack">row item 2</div>
@@ -34,16 +40,17 @@
 	<button onclick="makeNewDiv()">Push value</button>
 	<button onclick="popItem()">Pop</button>
 	<button onclick="zap()">Zap values</button>
+	<button onclick="unique()">Unique</button>
 </body>
 <script>
 	function makeNewDiv() {
-	
+
 		let element = document.createElement("div")
-		let input = document.getElementById("InputElement")
+		let input = document.getElementById("InputElements")
 		element.innerHTML = input.value
 		element.className = "stack"
 
-		
+
 		document.getElementById('target').appendChild(element)
 	}
 	function popItem() {
@@ -54,7 +61,7 @@
 	}
 	function zap() {
 		var Items = document.getElementsByClassName("stack")
-		let input = document.getElementById("InputElement").value
+		let input = document.getElementById("InputElements").value
 		if (Items != undefined && Items.length > 0) {
 			for (let i = 0; i < Items.length; i++) {
 				if (Items[i].innerHTML == input) {
@@ -66,5 +73,17 @@
 			}
 		}
 	}
+	function unique() {
+		var stackItems = document.getElementsByClassName("stack")
+		for (var i = 0; i < stackItems.length; i++) {
+			for (var j = i + 1; j < stackItems.length; j++) {
+				if (stackItems[i].innerHTML == stackItems[j].innerHTML) {
+					stackItems[i].remove()
+					j--; i--
+				}
+			}
+		}
+	}
 </script>
-</html>	
+
+</html>
