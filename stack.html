@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <title>Stack of Items</title>
+    <style>
+    .flex-container {
+        display: flex;  flex-direction:row;
+        background-color:cadetblue;
+    }
+
+    .flex-container > div {  /*div children of the flex container*/
+        background-color: #f1f1f1; 
+        margin: 10px;  padding: 20px;  font-size: 30px;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 600px) { 
+        .flex-container{
+            flex-direction:column;
+            background-color: green;
+        }
+    }
+    </style>
+</head>
+<body>
+	<h2>Madhumitha Reddy builds a stack</h2>
+	<input id="InputElement" type="text"><br><br>
+	<div class="flex-container" id="target">
+		<div class="stack">row item 1</div>
+		<div class="stack">row item 2</div>
+		<div class="stack">row item 3</div>
+	</div><br>
+	<h4>Press the button to push element</h4>
+	<button onclick="makeNewDiv()">Push value</button>
+	<button onclick="popItem()">Pop</button>
+	<button onclick="zap()">Zap values</button>
+</body>
+<script>
+	function makeNewDiv() {
+	
+		let element = document.createElement("div")
+		let input = document.getElementById("InputElement")
+		element.innerHTML = input.value
+		element.className = "stack"
+
+		
+		document.getElementById('target').appendChild(element)
+	}
+	function popItem() {
+		var Items = document.getElementsByClassName("stack")
+		var Length = Items.length
+		if (Length > 0)
+			Items[Length - 1].remove()
+	}
+	function zap() {
+		var Items = document.getElementsByClassName("stack")
+		let input = document.getElementById("InputElement").value
+		if (Items != undefined && Items.length > 0) {
+			for (let i = 0; i < Items.length; i++) {
+				if (Items[i].innerHTML == input) {
+					var itemToBeRemoved = Items[i].innerHTML
+					Items[i].remove()
+					console.log(itemToBeRemoved)
+					i--
+				}
+			}
+		}
+	}
+</script>
+</html>	
